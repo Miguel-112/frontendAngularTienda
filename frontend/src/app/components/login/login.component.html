@@ -1,0 +1,31 @@
+<div class="login-container">
+    <h1 class="animated-text">Tienda online</h1>
+    <div class="logo-container ">
+       <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Metin2logo.png" alt="Amazon Logo" class="logo"> 
+       <div class="rayos"></div>
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" formControlName="email" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Sign In</button>
+              </form>
+
+        </div>
+
+       
+
+    </div>
+    
+  </div>

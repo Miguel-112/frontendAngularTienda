@@ -1,0 +1,14 @@
+.tarjeta img {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+  }
+
+
+
+  .card img {
+    max-width: 200%;
+    height: 300px;
+  }
+  
