@@ -1,4 +1,8 @@
+
 import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Tienda Metin2';
-}
+  title = 'Almacen de respuestos';
+
+  showLogin = true;
+
+  
+
+  constructor(private router: Router) {
+    this.showLogin = this.router.url === '/login';
+    console.log('showLogin:', this.showLogin);
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.showLogin = event.url === '/login';
+        console.log('event.url:', event.url);
+        console.log('showLogin:', this.showLogin);
+      }
+    });
+  }
+  }
+  
+  

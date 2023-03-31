@@ -12,6 +12,10 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PrincipalComponent } from './components/principal/principal.component';
+import { RegistrarComponent } from './components/registrar/registrar.component';
+import { HttpClientModule } from '@angular/common/http';
+import { VmenuComponent } from './components/vmenu/vmenu.component';
+import { ListcategoriesComponent } from './components/categories/listcategories/listcategories.component';
 
 
 
@@ -24,6 +28,10 @@ import { PrincipalComponent } from './components/principal/principal.component';
     SignupComponent,
     ProfileComponent,
     PrincipalComponent,
+    RegistrarComponent,
+    VmenuComponent,
+    ListcategoriesComponent,
+  
 
     
   
@@ -35,6 +43,7 @@ import { PrincipalComponent } from './components/principal/principal.component';
     AppRoutingModule,
     RouterModule,
     ReactiveFormsModule,
+    HttpClientModule,
     
   ],
   providers: [],

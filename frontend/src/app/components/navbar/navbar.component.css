@@ -28,13 +28,30 @@ a{
 }
 
 
+.animated-text {
+  animation: text-glow 1s ease-in-out infinite;
+  color: green;
+}
+
+@keyframes text-glow {
+  0% {
+    text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffd700, 0 0 40px #ffd700, 0 0 70px #ffd700, 0 0 80px #ffd700, 0 0 100px #ffd700;
+  }
+  100% {
+    text-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700, 0 0 40px #ffd700, 0 0 50px #ffd700, 0 0 80px #ffd700, 0 0 90px #ffd700, 0 0 120px #ffd700;
+  }
+}
+
+
+
+
 
 
 
 
 .animado {
     position: relative;
-    margin-left: 150px;
+    margin-left: 90px;
   }
   
   .animado::before {
@@ -60,3 +77,36 @@ a{
     /* agregue cualquier otro estilo que desee aplicar al enlace activo aquí */
    
   }
+
+
+
+  /* Animate imagen */
+
+
+  /* Define el contenedor de la imagen */
+  .logo-container {
+    position: relative;
+  }
+
+  /* Agrega un estilo a la imagen */
+  .logo-container img {
+    max-width: 100%;
+  }
+
+  /* Agrega el efecto de rayos */
+  .logo-container::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    z-index: -1;
+    box-shadow: 0 0 20px 20px #fff, 0 0 40px 40px #fff, 0 0 60px 60px #fff, 0 0 80px 80px #fff, 0 0 100px 100px #fff, 0 0 120px 120px #fff, 0 0 140px 140px #fff;
+    opacity: 0.7;
+  }
+
+
+
+
+
