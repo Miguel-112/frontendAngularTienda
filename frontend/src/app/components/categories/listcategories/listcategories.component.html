@@ -1,1 +1,86 @@
-<p>listcategories works!</p>
+
+<div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>
+<div *ngIf="errorMsg" class="error danger-message">{{errorMsg}}</div>
+<br>
+
+
+
+<h1>Lista de Categorías</h1>
+
+<form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+
+
+    <div class="row">
+
+
+        <div class="col-4">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Nombre</label>
+            
+                <input type="text" class="form-control" formControlName="name" id="exampleInputEmail1" aria-describedby="emailHelp">
+                
+                <div *ngIf="categoryForm.controls['name'].invalid && (categoryForm.controls['name'].dirty || categoryForm.controls['name'].touched)">
+                
+                    <div *ngIf="categoryForm.get('name')?.errors?.['required']">
+                      El email es requerido
+                    </div>
+                  </div>
+              </div>
+            
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Descripción:</label>
+            
+              
+                <input type="textarea" class="form-control" formControlName="description" id="exampleInputEmail1">
+
+                
+                <div *ngIf="categoryForm.controls['description'].invalid && (categoryForm.controls['description'].dirty || categoryForm.controls['description'].touched)">
+            
+                    <div *ngIf="categoryForm.get('description')?.errors?.['required']">
+                        El email es requerido
+                      </div>
+                 
+                </div>
+              </div>
+            
+              
+              <div>
+                <br><br>
+                <button type="submit" class="btn btn-primary">{{ isEdit ? 'Actualizar' : 'Crear' }}</button>
+                <button style="margin-left: 10px;" type="button" class="btn btn-success" (click)="resetForm()">Resetear</button>
+            
+               
+              </div>
+           
+        </div>
+    
+    </div>
+
+
+ 
+</form>
+
+
+
+<table class="table">
+    <thead>
+      <tr >
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories">
+        <th scope="row">{{ category.name }}</th>
+        <td>{{ category.description }}</td>
+       
+            <td>
+                <button type="button" class="btn btn-success" (click)="onEdit(category)">Editar</button>
+                <button type="button" class="btn btn-danger" (click)="onDelete(category.id)" style="margin-left: 10px
+                ;">Eliminar</button>
+            </td>
+      </tr>
+    
+    </tbody>
+  </table>

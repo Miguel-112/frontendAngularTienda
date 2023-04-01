@@ -17,6 +17,7 @@ export class VmenuComponent {
   
 menuIcons = 'menu';
 menuVisible = false;
+active=false;
 
 
 

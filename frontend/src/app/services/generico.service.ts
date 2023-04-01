@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-
+import { Category } from '../interfaces/category';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -14,15 +14,15 @@ export class GenericoService {
 
   constructor(private http: HttpClient) { }
 
-  private getHeaders(): HttpHeaders {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      headers.append('Authorization', `Bearer ${token}`);
-    }
-    return headers;
+
+  private token() {
+    var token = localStorage.getItem('token') || '';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+      }),
+    };
+    return httpOptions;
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
@@ -31,24 +31,30 @@ export class GenericoService {
   }
 
   get<T>(path: string): Observable<T> {
-    return this.http.get<T>(this.apiUrl + path, { headers: this.getHeaders() })
-      .pipe(catchError(this.handleError));
+    return this.http.get<T>(this.apiUrl + path, this.token())
+     ;
   }
 
   post<T>(path: string, body: any): Observable<T> {
-    return this.http.post<T>(this.apiUrl + path, body, { headers: this.getHeaders() })
+    return this.http.post<T>(this.apiUrl + path, body, this.token())
      ;
   }
 
   put<T>(path: string, body: any): Observable<T> {
-    return this.http.put<T>(this.apiUrl + path, body, { headers: this.getHeaders() })
+    return this.http.put<T>(this.apiUrl + path, body, this.token())
       ;
   }
 
-  delete<T>(path: string): Observable<T> {
-    return this.http.delete<T>(this.apiUrl + path, { headers: this.getHeaders() })
-     ;
+  delete<T>(path: string, id: number): Observable<T> {
+    return this.http.delete<T>(`${this.apiUrl}${path}/${id}`, this.token());
   }
+
+  getAllCategories(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
+  }
+
+
+
 
   
 }

@@ -9,7 +9,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { RegistrarComponent } from './components/registrar/registrar.component';
 import { AuthGuard } from './auth.guard';
-
+import { ListcategoriesComponent } from './components/categories/listcategories/listcategories.component';
 
 
 
@@ -34,6 +34,10 @@ const routes: Routes = [
   {
     path: 'registrarse',
     component: RegistrarComponent
+  },
+  {
+    path: 'categories',
+    component: ListcategoriesComponent
   }
 ];
 
