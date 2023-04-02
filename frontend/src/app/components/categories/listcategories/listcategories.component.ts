@@ -120,6 +120,7 @@ export class ListcategoriesComponent {
   getCategories() {
     this.categoriService.getCategories().subscribe((data: { categories: Category[] }) => {
       this.categories = data.categories;
+      console.log(data.categories);
     });
   }
 

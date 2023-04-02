@@ -1,0 +1,155 @@
+<div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>
+<div *ngIf="errorMsg" class="error danger-message">{{errorMsg}}</div>
+<br>
+
+<h1>Lista de Proveedores</h1>
+
+<form [formGroup]="providerForm" (ngSubmit)="onSubmit()">
+
+
+    <div class="row">
+
+
+        <div class="col-4">
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Nombre</label>
+
+                <input type="text" class="form-control" formControlName="name" id="exampleInputEmail1"
+                    aria-describedby="emailHelp">
+
+                <div
+                    *ngIf=" providerForm.controls['name'].invalid && ( providerForm.controls['name'].dirty ||  providerForm.controls['name'].touched)">
+
+                    <div *ngIf=" providerForm.get('name')?.errors?.['required']">
+                        El Nombre es requerido
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">email:</label>
+
+
+                <input type="textarea" class="form-control" formControlName="email" id="exampleInputEmail1">
+
+
+                <div
+                    *ngIf="providerForm.controls['email'].invalid && ( providerForm.controls['email'].dirty ||  providerForm.controls['email'].touched)">
+
+                    <div *ngIf=" providerForm.get('email')?.errors?.['required']">
+                        El email es requerido
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="col-4">
+
+
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">telefono</label>
+
+
+                <input type="textarea" class="form-control" formControlName="tel" id="exampleInputEmail1">
+
+
+                <div
+                    *ngIf=" providerForm.controls['tel'].invalid && ( providerForm.controls['tel'].dirty ||  providerForm.controls['tel'].touched)">
+
+                    <div *ngIf=" providerForm.get('tel')?.errors?.['required']">
+                        El telefono es requerido
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">direccion</label>
+
+
+                <input type="textarea" class="form-control" formControlName="address" id="exampleInputEmail1">
+
+
+                <div
+                    *ngIf=" providerForm.controls['address'].invalid && ( providerForm.controls['address'].dirty ||  providerForm.controls['address'].touched)">
+
+                    <div *ngIf=" providerForm.get('address')?.errors?.['required']">
+                        la direccion es requerida
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+        <div>
+
+            <button type="submit" class="btn btn-primary">{{ isEdit ? 'Actualizar' : 'Crear' }}</button>
+            <button style="margin-left: 10px;" type="button" class="btn btn-success"
+                (click)="resetForm()">Resetear</button>
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+</form>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">email</th>
+            <th scope="col">Tel</th>
+            <th scope="col">direccion</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <ng-container *ngIf="providers.length > 0; else noProviders">
+            <tr *ngFor="let provider of providers">
+                <th scope="row">{{ provider.name }}</th>
+                <td>{{ provider.email }}</td>
+                <td>{{ provider.tel }}</td>
+                <td>{{ provider.address }}</td>
+                <td>
+                    <button type="button" class="btn btn-success" (click)="onEdit(provider)">Editar</button>
+                    <button type="button" class="btn btn-danger" (click)="onDelete(provider.id)"
+                        style="margin-left: 10px;">Eliminar</button>
+                </td>
+            </tr>
+        </ng-container>
+
+        <ng-template #noProviders>
+            <tr>
+                <td colspan="5" class="text-center">No hay proveedores disponibles.</td>
+            </tr>
+        </ng-template>
+
+    </tbody>
+</table>
+
+

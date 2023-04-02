@@ -3,8 +3,6 @@
 <div *ngIf="errorMsg" class="error danger-message">{{errorMsg}}</div>
 <br>
 
-
-
 <h1>Lista de Categorías</h1>
 
 <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
@@ -45,7 +43,7 @@
             
               
               <div>
-                <br><br>
+                
                 <button type="submit" class="btn btn-primary">{{ isEdit ? 'Actualizar' : 'Crear' }}</button>
                 <button style="margin-left: 10px;" type="button" class="btn btn-success" (click)="resetForm()">Resetear</button>
             

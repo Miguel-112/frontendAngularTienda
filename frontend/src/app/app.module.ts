@@ -16,6 +16,7 @@ import { RegistrarComponent } from './components/registrar/registrar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { VmenuComponent } from './components/vmenu/vmenu.component';
 import { ListcategoriesComponent } from './components/categories/listcategories/listcategories.component';
+import { ProviderComponent } from './components/provider/provider.component';
 
 
 
@@ -31,6 +32,7 @@ import { ListcategoriesComponent } from './components/categories/listcategories/
     RegistrarComponent,
     VmenuComponent,
     ListcategoriesComponent,
+    ProviderComponent,
   
 
     

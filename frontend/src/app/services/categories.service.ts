@@ -28,7 +28,7 @@ export class CategoriesService {
 
 
     createCategory(categoria: Category): Observable<{ categorías: Category[] }> {
-      return this.apiService.post(this.apiUrl + 'categories', { name: categoria.name, description: categoria.description });
+      return this.apiService.post(this.apiUrl + 'categories', { name: categoria.name, email: categoria.description });
     }
 
 
