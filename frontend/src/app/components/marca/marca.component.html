@@ -1,0 +1,122 @@
+
+<div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>
+<div *ngIf="errorMsg" class="error danger-message">{{errorMsg}}</div>
+<br>
+
+<h1>Lista de Marcas</h1>
+
+<form [formGroup]="marcaForm" (ngSubmit)="onSubmit()">
+
+
+    <div class="row">
+
+
+        <div class="col-md-12 col-lg-4">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Nombre</label>
+            
+                <input type="text" class="form-control" formControlName="name" id="exampleInputEmail1" aria-describedby="emailHelp">
+                
+                <div *ngIf="marcaForm.controls['name'].invalid && (marcaForm.controls['name'].dirty || marcaForm.controls['name'].touched)">
+                
+                    <div style="color:red;" *ngIf="marcaForm.get('name')?.errors?.['required']">
+                      El email es requerido
+                    </div>
+
+                    <div style="color: red;" *ngIf="marcaForm.get('name')?.errors?.['minlength']">
+
+                      El nombre debe tener al menos {{ marcaForm.get('name')?.errors?.['minlength']?.requiredLength }}
+                      caracteres.
+
+
+                    </div>
+                  </div>
+              </div>
+
+            
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Descripción:</label>
+            
+              
+                <input type="textarea" class="form-control" formControlName="description" id="exampleInputEmail1">
+
+                
+                <div *ngIf="marcaForm.controls['description'].invalid && (marcaForm.controls['description'].dirty || marcaForm.controls['description'].touched)">
+            
+                    <div style="color:red;" *ngIf="marcaForm.get('description')?.errors?.['required']">
+                        El email es requerido
+                      </div>
+                 
+                </div>
+
+                <div style="color: red;" *ngIf="marcaForm.get('description')?.errors?.['minlength']">
+
+                  la Descripción debe tener al menos {{ marcaForm.get('description')?.errors?.['minlength']?.requiredLength }}
+                  caracteres.
+
+
+                </div>
+              </div>
+            
+              
+              <div>
+                
+                <button type="submit" class="btn btn-primary" (click)="onCreate()">{{ isEdit ? 'Actualizar' : 'Crear' }}</button>
+
+                <button style="margin-left: 10px;" type="button" class="btn btn-success" (click)="resetForm()">Resetear</button>
+            
+               
+              </div>
+           
+        </div>
+    
+    </div>
+
+
+ 
+</form>
+
+
+<br>
+
+
+<div class="col-4">
+  <div class="input-group ml-auto">
+      <input type="text" class="form-control" placeholder="Buscar marca" [(ngModel)]="searchTerm"
+          (input)="  filterMarca()">
+      <div class="input-group-append">
+
+
+      </div>
+  </div>
+</div>
+
+
+
+<table class="table">
+    <thead>
+      <tr >
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let marca of    filteredMarca">
+        
+        <th scope="row">{{ marca.name }}</th>
+        <td>{{ marca.description }}</td>
+       
+          
+
+            <td class="text-center">
+              <button type="button" class="btn btn-success btn-sm d-block mb-2 w-100" (click)="onEdit(marca)">Editar</button>
+              <button type="button" class="btn btn-danger btn-sm d-block w-100" (click)="onDelete(marca.id)">Eliminar</button>
+            </td>
+            
+      </tr>
+      
+    
+    </tbody>
+  </table>
+

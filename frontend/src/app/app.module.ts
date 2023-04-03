@@ -19,6 +19,7 @@ import { ListcategoriesComponent } from './components/categories/listcategories/
 import { ProviderComponent } from './components/provider/provider.component';
 import { FormsModule } from '@angular/forms';
 import { ClientComponent } from './components/client/client.component';
+import { MarcaComponent } from './components/marca/marca.component';
 
 
 
@@ -37,6 +38,7 @@ import { ClientComponent } from './components/client/client.component';
     ListcategoriesComponent,
     ProviderComponent,
     ClientComponent,
+    MarcaComponent,
   
 
     

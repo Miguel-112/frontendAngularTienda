@@ -12,6 +12,7 @@ import { AuthGuard } from './auth.guard';
 import { ListcategoriesComponent } from './components/categories/listcategories/listcategories.component';
 import { ProviderComponent } from './components/provider/provider.component';
 import { ClientComponent } from './components/client/client.component';
+import { MarcaComponent } from './components/marca/marca.component';
 
 
 
@@ -57,6 +58,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   
+  {
+    path: 'brand',
+    component: MarcaComponent,
+    canActivate: [AuthGuard]
+  },
 
 
 ];
