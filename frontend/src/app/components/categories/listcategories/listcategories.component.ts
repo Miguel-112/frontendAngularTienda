@@ -18,11 +18,14 @@ import { CategoriesService } from 'src/app/services/categories.service';
 export class ListcategoriesComponent {
 
   categories: Category[] = [];
+  filteredCategory: Category[]=[];
+  searchTerm = ''
   categoryForm!: FormGroup;
   isEdit = false;
   editCategoryId!: number;
   successMessage = ''
   errorMsg = ''
+  
 
   constructor(private fb: FormBuilder, private categoriService: CategoriesService) {
 
@@ -36,8 +39,8 @@ export class ListcategoriesComponent {
 
   createForm() {
     this.categoryForm = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required]
+      name: ['', [Validators.required, Validators.minLength(5)]],
+      description: ['', [Validators.required,Validators.minLength(10)]]
     });
   }
 
@@ -115,14 +118,40 @@ export class ListcategoriesComponent {
   }
 
 
-
-
-  getCategories() {
-    this.categoriService.getCategories().subscribe((data: { categories: Category[] }) => {
-      this.categories = data.categories;
-      console.log(data.categories);
+  getCategories(): void {
+    this.categoriService.getCategories().subscribe(response => {
+      this.categories = response.categories;
+      this. filteredCategory = this.categories;
+      
     });
   }
+
+
+  onCreate() {
+    if (this.categoryForm.valid) {
+      // realizar acción de creación de categoría
+    } else {
+      this.categoryForm.markAllAsTouched();
+    }
+  }
+
+
+
+
+
+  filterCategory(): void {
+    if (!this.searchTerm) {
+      this.filteredCategory = this.categories;
+      return;
+    }
+    this.filteredCategory = this.categories.filter(category => {
+      return category.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+             category.description.toLowerCase().includes(this.searchTerm.toLowerCase());
+    });
+  }
+
+
+
 
 
 

@@ -2,9 +2,9 @@
 <div *ngIf="errorMsg" class="error danger-message">{{errorMsg}}</div>
 <br>
 
-<h1>Lista de Proveedores</h1>
+<h1>Lista de Clientes</h1>
 
-<form [formGroup]="providerForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
 
 
     <div class="row">
@@ -19,14 +19,14 @@
                     aria-describedby="emailHelp">
 
                 <div style="color: red;"
-                    *ngIf="providerForm.controls['name'].invalid && ( providerForm.controls['name'].dirty ||  providerForm.controls['name'].touched)">
+                    *ngIf="clientForm.controls['name'].invalid && ( clientForm.controls['name'].dirty || clientForm.controls['name'].touched)">
 
-                    <div *ngIf=" providerForm.get('name')?.errors?.['required']">
+                    <div *ngIf=" clientForm.get('name')?.errors?.['required']">
                         El Nombre es requerido
                     </div>
-                    <div style="color: red;" *ngIf="providerForm.get('name')?.errors?.['minlength']">
+                    <div style="color: red;" *ngIf="clientForm.get('name')?.errors?.['minlength']">
 
-                        El nombre debe tener al menos {{ providerForm.get('name')?.errors?.['minlength']?.requiredLength }}
+                        El nombre debe tener al menos {{ clientForm.get('name')?.errors?.['minlength']?.requiredLength }}
                         caracteres.
   
   
@@ -42,9 +42,9 @@
 
 
                 <div
-                    *ngIf="providerForm.controls['email'].invalid && ( providerForm.controls['email'].dirty ||  providerForm.controls['email'].touched)">
+                    *ngIf="clientForm.controls['email'].invalid && ( clientForm.controls['email'].dirty || clientForm.controls['email'].touched)">
 
-                    <div style="color: red;" *ngIf=" providerForm.get('email')?.errors?.['required']">
+                    <div style="color: red;" *ngIf=" clientForm.get('email')?.errors?.['required']">
                         El email es requerido
                     </div>
 
@@ -68,9 +68,9 @@
 
 
                 <div
-                    *ngIf=" providerForm.controls['tel'].invalid && ( providerForm.controls['tel'].dirty ||  providerForm.controls['tel'].touched)">
+                    *ngIf=" clientForm.controls['tel'].invalid && ( clientForm.controls['tel'].dirty || clientForm.controls['tel'].touched)">
 
-                    <div style="color: red;" *ngIf=" providerForm.get('tel')?.errors?.['required']">
+                    <div style="color: red;" *ngIf=" clientForm.get('tel')?.errors?.['required']">
                         El telefono es requerido
                     </div>
 
@@ -89,15 +89,15 @@
 
 
                 <div
-                    *ngIf=" providerForm.controls['address'].invalid && ( providerForm.controls['address'].dirty ||  providerForm.controls['address'].touched)">
+                    *ngIf=" clientForm.controls['address'].invalid && ( clientForm.controls['address'].dirty || clientForm.controls['address'].touched)">
 
-                    <div  style="color: red;" *ngIf=" providerForm.get('address')?.errors?.['required']">
+                    <div  style="color: red;" *ngIf=" clientForm.get('address')?.errors?.['required']">
                         la direccion es requeaddress
                     </div>
 
-                    <div style="color: red;" *ngIf="providerForm.get('address')?.errors?.['minlength']">
+                    <div style="color: red;" *ngIf="clientForm.get('address')?.errors?.['minlength']">
 
-                        la direccion debe tener al menos {{ providerForm.get('address')?.errors?.['minlength']?.requiredLength }}
+                        la direccion debe tener al menos {{ clientForm.get('address')?.errors?.['minlength']?.requiredLength }}
                         caracteres.
   
   
@@ -137,7 +137,7 @@
 
 <div class="col-4">
     <div class="input-group ml-auto">
-        <input type="text" class="form-control" placeholder="Buscar proveedor" [(ngModel)]="searchTerm"
+        <input type="text" class="form-control" placeholder="Buscar Cliente" [(ngModel)]="searchTerm"
             (input)="filterProviders()">
         <div class="input-group-append">
 
@@ -163,16 +163,16 @@
     </thead>
     <tbody>
 
-        <ng-container *ngIf="providers.length > 0; else noProviders">
+        <ng-container *ngIf="client.length > 0; else noProviders">
 
-            <tr *ngFor="let provider of filteredProviders">
-                <td>{{ provider.name }}</td>
-                <td>{{ provider.email }}</td>
-                <td>{{ provider.tel }}</td>
-                <td>{{ provider.address }}</td>
+            <tr *ngFor="let client of filteredClient">
+                <td>{{ client.name }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.tel }}</td>
+                <td>{{client.address }}</td>
                 <td class="text-center">
-                    <button type="button" class="btn btn-success btn-sm d-block mb-2 w-100" (click)="onEdit(provider)">Editar</button>
-                    <button type="button" class="btn btn-danger btn-sm d-block w-100" (click)="onDelete(provider.id)">Eliminar</button>
+                    <button type="button" class="btn btn-success btn-sm d-block mb-2 w-100" (click)="onEdit(client)">Editar</button>
+                    <button type="button" class="btn btn-danger btn-sm d-block w-100" (click)="onDelete(client.id)">Eliminar</button>
                   </td>
                   
             </tr>
@@ -184,7 +184,7 @@
 
         <ng-template #noProviders>
             <tr>
-                <td colspan="5" class="text-center">No hay proveedores disponibles.</td>
+                <td colspan="5" class="text-center">No hay Clientes disponibles.</td>
             </tr>
         </ng-template>
 

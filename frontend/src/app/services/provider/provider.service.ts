@@ -16,11 +16,6 @@ export class ProviderService {
 
   private apiUrl = '/';
 
-
-  login(email: string, password: string): Observable<any> {
-    return this.apiService.post(this.apiUrl + 'login', { email, password });
-  }
-
  
     getProvider(): Observable<{ provider: Provider[] }> {
 

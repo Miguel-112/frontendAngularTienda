@@ -11,7 +11,7 @@
     <div class="row">
 
 
-        <div class="col-4">
+        <div class="col-md-12 col-lg-4">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nombre</label>
             
@@ -19,11 +19,20 @@
                 
                 <div *ngIf="categoryForm.controls['name'].invalid && (categoryForm.controls['name'].dirty || categoryForm.controls['name'].touched)">
                 
-                    <div *ngIf="categoryForm.get('name')?.errors?.['required']">
+                    <div style="color:red;" *ngIf="categoryForm.get('name')?.errors?.['required']">
                       El email es requerido
+                    </div>
+
+                    <div style="color: red;" *ngIf="categoryForm.get('name')?.errors?.['minlength']">
+
+                      El nombre debe tener al menos {{ categoryForm.get('name')?.errors?.['minlength']?.requiredLength }}
+                      caracteres.
+
+
                     </div>
                   </div>
               </div>
+
             
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Descripción:</label>
@@ -34,17 +43,26 @@
                 
                 <div *ngIf="categoryForm.controls['description'].invalid && (categoryForm.controls['description'].dirty || categoryForm.controls['description'].touched)">
             
-                    <div *ngIf="categoryForm.get('description')?.errors?.['required']">
+                    <div style="color:red;" *ngIf="categoryForm.get('description')?.errors?.['required']">
                         El email es requerido
                       </div>
                  
+                </div>
+
+                <div style="color: red;" *ngIf="categoryForm.get('description')?.errors?.['minlength']">
+
+                  la Descripción debe tener al menos {{ categoryForm.get('description')?.errors?.['minlength']?.requiredLength }}
+                  caracteres.
+
+
                 </div>
               </div>
             
               
               <div>
                 
-                <button type="submit" class="btn btn-primary">{{ isEdit ? 'Actualizar' : 'Crear' }}</button>
+                <button type="submit" class="btn btn-primary" (click)="onCreate()">{{ isEdit ? 'Actualizar' : 'Crear' }}</button>
+
                 <button style="margin-left: 10px;" type="button" class="btn btn-success" (click)="resetForm()">Resetear</button>
             
                
@@ -59,6 +77,21 @@
 </form>
 
 
+<br>
+
+
+<div class="col-4">
+  <div class="input-group ml-auto">
+      <input type="text" class="form-control" placeholder="Buscar Categoria" [(ngModel)]="searchTerm"
+          (input)=" filterCategory()">
+      <div class="input-group-append">
+
+
+      </div>
+  </div>
+</div>
+
+
 
 <table class="table">
     <thead>
@@ -69,16 +102,20 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let category of categories">
+      <tr *ngFor="let category of  filteredCategory">
+        
         <th scope="row">{{ category.name }}</th>
         <td>{{ category.description }}</td>
        
-            <td>
-                <button type="button" class="btn btn-success" (click)="onEdit(category)">Editar</button>
-                <button type="button" class="btn btn-danger" (click)="onDelete(category.id)" style="margin-left: 10px
-                ;">Eliminar</button>
+          
+
+            <td class="text-center">
+              <button type="button" class="btn btn-success btn-sm d-block mb-2 w-100" (click)="onEdit(category)">Editar</button>
+              <button type="button" class="btn btn-danger btn-sm d-block w-100" (click)="onDelete(category.id)">Eliminar</button>
             </td>
+            
       </tr>
+      
     
     </tbody>
   </table>

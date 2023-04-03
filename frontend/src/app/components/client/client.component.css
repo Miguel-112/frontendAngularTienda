@@ -1,4 +1,6 @@
-.success-message {
+
+  
+  .success-message {
     background-color: green;
     color: white;
     padding: 10px;
@@ -12,9 +14,4 @@
     color: white;
     padding: 10px;
     border-radius: 5px;
-  }
-
-  .btn-sm {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.75rem;
   }

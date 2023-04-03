@@ -11,18 +11,19 @@ import { RegistrarComponent } from './components/registrar/registrar.component';
 import { AuthGuard } from './auth.guard';
 import { ListcategoriesComponent } from './components/categories/listcategories/listcategories.component';
 import { ProviderComponent } from './components/provider/provider.component';
+import { ClientComponent } from './components/client/client.component';
 
 
 
 
 const routes: Routes = [
-  {
-    path: 'login',
-    component: LoginComponent
-  },
+
+  { path: '', component: LoginComponent },
+
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'signup',
@@ -35,17 +36,27 @@ const routes: Routes = [
   },
   {
     path: 'registrarse',
-    component: RegistrarComponent
+    component: RegistrarComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'categories',
-    component: ListcategoriesComponent
+    component: ListcategoriesComponent,
+    canActivate: [AuthGuard]
   },
 
   {
     path: 'provider',
-    component: ProviderComponent
-  }
+    component: ProviderComponent,
+    canActivate: [AuthGuard]
+  },
+
+  {
+    path: 'client',
+    component: ClientComponent,
+    canActivate: [AuthGuard]
+  },
+  
 
 
 ];

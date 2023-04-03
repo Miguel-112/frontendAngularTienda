@@ -19,6 +19,8 @@ export class ProviderComponent {
 
 
   providers: Provider[] = [];
+  filteredProviders: Provider[]=[];
+  searchTerm = ''
   providerForm!: FormGroup;
   isEdit = false;
   editProviderId!: number;
@@ -31,35 +33,39 @@ export class ProviderComponent {
   }
 
   ngOnInit(): void {
-    this.getProvider();
+    this.getProviders();
     this.createForm();
 
   }
 
   createForm() {
     this.providerForm = this.fb.group({
-
-      name: ['', Validators.required],
-      email: ['', Validators.required],
-      tel: ['', Validators.required],
-      address: ['', Validators.required]
-
+      name: ['', [Validators.required, Validators.minLength(5)]],
+      email: ['', [Validators.required, Validators.email]],
+      tel: ['', [Validators.required, ]],
+      address: ['',[Validators.required,Validators.minLength(10)]]
     });
   }
 
   onSubmit() {
+
     if (this.providerForm.invalid) {
+      console.log('holaaa');
       return;
     }
+
+    console.log(this.isEdit);
 
     const formData = this.providerForm.value;
 
     if (this.isEdit) {
+
+      console.log(this.isEdit);
       
       this.providerService.updateProvider(this.editProviderId, formData).subscribe(
         (response) => {
           this.resetForm();
-          this.getProvider();
+          this.getProviders();
           this.successMessage = 'Proveedor actualizado con exito';
         }, (error) => {
           console.log('Error al actualizar el proveedor', error);
@@ -71,7 +77,7 @@ export class ProviderComponent {
       this.providerService.createProvider(formData).subscribe(
         (response) => {
           this.resetForm();
-          this.getProvider();
+          this.getProviders();
           this.successMessage = 'Proveedor creado con exito';
 
         }, (error) => {
@@ -83,6 +89,14 @@ export class ProviderComponent {
     }
   }
 
+  onCreate() {
+    if (this.providerForm.valid) {
+      // realizar acción de creación de categoría
+    } else {
+      this.providerForm.markAllAsTouched();
+    }
+  }
+
   resetForm() {
     this.providerForm.reset();
     this.isEdit = false;
@@ -90,6 +104,7 @@ export class ProviderComponent {
 
   onEdit(provider: Provider) {
     this.isEdit = true;
+    console.log(this.isEdit);
     this.editProviderId = provider.id;
     this.providerForm.patchValue({
       name: provider.name,
@@ -107,7 +122,7 @@ export class ProviderComponent {
       (response
 
       ) => {
-        this.getProvider();
+        this.getProviders();
         this.successMessage = 'eliminado correctamente';
 
 
@@ -125,14 +140,32 @@ export class ProviderComponent {
 
 
 
-  getProvider() {
-    this.providerService.getProvider().subscribe((data: { provider: Provider[] }) => {
-        this.providers = data.provider;
+ 
 
-      },
-      (error: any) => {
-        console.error(error);
-      });
+
+  getProviders(): void {
+    this.providerService.getProvider().subscribe(response => {
+      this.providers = response.provider;
+      this.filteredProviders = this.providers;
+      
+    });
+  }
+
+
+  filterProviders(): void {
+    if (!this.searchTerm) {
+      this.filteredProviders = this.providers;
+      return;
+    }
+    this.filteredProviders = this.providers.filter(provider => {
+      const nameMatches = provider.name.toLowerCase().includes(this.searchTerm.toLowerCase());
+      const emailMatches = provider.email.toLowerCase().includes(this.searchTerm.toLowerCase());
+      const telMatches = provider.tel && provider.tel.toLowerCase().includes(this.searchTerm.toLowerCase());
+      const addressMatches = provider.address && provider.address.toLowerCase().includes(this.searchTerm.toLowerCase());
+      return nameMatches || emailMatches || telMatches || addressMatches;
+    });
+
+    console.log(this.filteredProviders);
   }
 
 

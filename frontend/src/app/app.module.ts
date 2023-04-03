@@ -17,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { VmenuComponent } from './components/vmenu/vmenu.component';
 import { ListcategoriesComponent } from './components/categories/listcategories/listcategories.component';
 import { ProviderComponent } from './components/provider/provider.component';
+import { FormsModule } from '@angular/forms';
+import { ClientComponent } from './components/client/client.component';
+
 
 
 
@@ -33,6 +36,7 @@ import { ProviderComponent } from './components/provider/provider.component';
     VmenuComponent,
     ListcategoriesComponent,
     ProviderComponent,
+    ClientComponent,
   
 
     
@@ -46,6 +50,7 @@ import { ProviderComponent } from './components/provider/provider.component';
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule
     
   ],
   providers: [],

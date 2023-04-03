@@ -1,9 +1,14 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
      
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" aria-expanded="false">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         
         <div class="logo-container">
@@ -23,12 +28,12 @@
                         routerLinkActive="active">Proveedor</a></label>
             
             </li>
-            <li class="nav-item">
+           <!--  <li class="nav-item">
                 <label for=""><a class="animado" routerLink="" routerLinkActive="active">Iniciar
                         sesion</a></label>
-            </li>
+            </li> -->
             <li class="nav-item">
-                <label for=""><a class="animado" routerLink="profile" routerLinkActive="active">Profile</a></label>
+                <label for=""><a class="animado" routerLink="client" routerLinkActive="active">Cliente</a></label>
             </li>
             
             <li class="nav-item">
@@ -52,5 +57,20 @@
     </div>
   </nav>
 
+<script>
+  $('.navbar-toggler').click(function () {
+    $(this).attr('aria-expanded', function (i, attr) {
+      return attr == 'true' ? 'false' : 'true';
+    });
+  });
+</script>
 
+
+<script>
+    $('.navbar-toggler').click(function () {
+      $(this).attr('aria-expanded', function (i, attr) {
+        return attr == 'true' ? 'false' : 'true';
+      });
+    });
+  </script>
   
