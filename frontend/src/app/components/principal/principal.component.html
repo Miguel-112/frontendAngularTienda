@@ -1,64 +1,94 @@
 <div className="snippet-body">
-    
-
-  
-<div className="snippet-body">
-
-</div>
-
-<br>
-
-<br>
-
-<div class="row">
 
 
-    <div class="col-4">
-        <div class="card">
-            <img src="https://w7.pngwing.com/pngs/828/929/png-transparent-vector-motorcycle-spares-concept-thumbnail.png"  alt=""
-                style="max-width: 200%; height: 300px;">
 
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <button type="button" style="margin-left: 4px; margin-right: 4px;"
-                    class="btn btn-success btn-sm ">agregar al carro</button>
-                <button type="button" class="btn btn-primary btn-sm m-r-5">Detalle</button>
-            </div>
-        </div>
+  <div className="snippet-body">
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div [formGroup]="myForm">
+
+    <div class="row">
+
+      <div class="col-3">
+
+        <label for="category">Filtrar por categoría:</label>
+       
+        <ng-select id="category" formControlName="category" [items]="categories" bindValue="id" bindLabel="name"
+          placeholder="" [multiple]="false" [searchable]="true" [clearable]="true" (change)="onCategorySelected($event)"
+          class="my-select form-select" aria-label="Default select example ">
+        </ng-select>
+
+      </div>
+
+      <div class="col-3">
+
+        <label for="category">Filtrar por Marca:</label>
+
+        <ng-select id="marca" formControlName="marca" [items]="marca" bindValue="id" bindLabel="name"
+        placeholder="" [multiple]="false" [searchable]="true" [clearable]="true" (change)="onBrandSelected($event)"
+        class="my-select form-select" aria-label="Default select example ">
+      </ng-select>
+
     </div>
 
-    <div class="col-4">
-        <div class="card">
-            <img src="https://w7.pngwing.com/pngs/828/929/png-transparent-vector-motorcycle-spares-concept-thumbnail.png" alt="Gyazo"
-                style="max-width: 200%; height: 300px;">
 
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <button type="button" style="margin-left: 4px; margin-right: 4px;"
-                    class="btn btn-success btn-sm ">agregar al carro</button>
-                <button type="button" class="btn btn-primary btn-sm m-r-5">Detalle</button>
-            </div>
-        </div>
+      </div>
+
     </div>
-    <div class="col-4">
+
+  </div>
+
+  <br>
+
+
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="page === 1">
+        <a class="page-link" [routerLink]="['.']" [queryParams]="{ page: page - 1 }" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li>
+      <li class="page-item" *ngFor="let p of totalPages" [class.active]="p === page">
+        <a class="page-link" [routerLink]="['.']" [queryParams]="{ page: p }">{{ p }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="page === totalPages[totalPages.length - 1]">
+        <a class="page-link" [routerLink]="['.']" [queryParams]="{ page: page + 1 }" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+    <div class="row">
+      <div class="row" *ngIf="motorcycleparts.length > 0"></div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-4" *ngFor="let motorcyclepart of motorcycleparts; trackBy: trackByFn">
         <div class="card">
-            <img src="https://w7.pngwing.com/pngs/828/929/png-transparent-vector-motorcycle-spares-concept-thumbnail.png" alt="Gyazo"
-                style="max-width: 200%; height: 300px;">
+          <img [src]="'http://127.0.0.1:8000/storage/images/' + motorcyclepart.image" alt="{{ motorcyclepart.name }}"
+            style="max-width: 200%; height: 300px;">
 
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <button type="button" style="margin-left: 4px; margin-right: 4px;"
-                    class="btn btn-success btn-sm ">agregar al carro</button>
-                <button type="button" class="btn btn-primary btn-sm m-r-5">Detalle</button>
-            </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ motorcyclepart.name }}</h5>
+            - <p class="card-text">cantidad: {{ motorcyclepart.quantity }}</p>
+            <p class="card-text">Precio de venta: {{ motorcyclepart.sale_price | currency }}</p>
+            <p class="card-text">Marca: {{ motorcyclepart.brand_name }}</p>
+
+            <button type="button" style="margin-left: 4px; margin-right: 4px;" class="btn btn-success btn-sm ">Agregar
+              al carro</button>
+            <button type="button" class="btn btn-primary btn-sm m-r-5">Detalle</button>
+          </div>
         </div>
+        <br>
+      </div>
+      <div *ngIf="motorcycleparts.length === 0">No hay resultados para esta búsqueda</div>
     </div>
-</div>
-
-
-
-<br><br>
-
+  </nav>

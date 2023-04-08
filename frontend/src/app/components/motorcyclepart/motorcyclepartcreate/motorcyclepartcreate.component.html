@@ -1,0 +1,61 @@
+<div class="formulario-container">
+
+    <button type="button" class="btn btn-secondary float-end" (click)="cerrarFormulario()">Cerrar</button>
+
+    <h2>Formulario de registro Repuestos</h2>
+
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+
+            <label for="category">Categoría:</label>
+            <select formControlName="category" id="category" class="form-control">
+                <option value="">Selecciona una categoría</option>
+                <option *ngFor="let category of  categories" [value]="category.id">{{ category.name }}</option>
+            </select>
+
+        </div>
+
+        <div class="form-group">
+            <label for="provider">Proveedor:</label>
+            <select formControlName="provider" id="provider" class="form-control">
+                <option value="">Selecciona un proveedor</option>
+                <option *ngFor="let provider of  providers" [value]="provider.id">{{ provider.name }}</option>
+
+                
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="brand">Marca:</label>
+            <select formControlName="brand" id="brand" class="form-control">
+                <option value="">Selecciona una marca</option>
+                <option *ngFor="let marca of  marcas" [value]="marca.id">{{ marca.name }}</option>
+                <!-- Rellenar con opciones de marca -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="purchasePrice">Precio de compra:</label>
+            <input type="number" formControlName="purchasePrice" id="purchasePrice" class="form-control">
+        </div>
+         <div class="form-group">
+            <label for="salePrice">Precio de venta:</label>
+            <input type="number" formControlName="salePrice" id="salePrice" class="form-control">
+        </div> 
+        <div class="form-group">
+            <label for="quantity">Cantidad:</label>
+            <input type="number" formControlName="quantity" id="quantity" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="image">Imagen:</label>
+            <input type="file" formControlName="image" id="image" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="iva">IVA:</label>
+            <input type="number" formControlName="iva" id="iva" class="form-control">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+
+</div>

@@ -22,6 +22,11 @@ import { ClientComponent } from './components/client/client.component';
 import { MarcaComponent } from './components/marca/marca.component';
 
 
+import { NgSelectModule } from '@ng-select/ng-select';
+import { MotorcyclepartlistComponent } from './components/motorcyclepart/motorcyclepartlist/motorcyclepartlist.component';
+import { MotorcyclepartcreateComponent } from './components/motorcyclepart/motorcyclepartcreate/motorcyclepartcreate.component';
+
+
 
 
 
@@ -39,6 +44,9 @@ import { MarcaComponent } from './components/marca/marca.component';
     ProviderComponent,
     ClientComponent,
     MarcaComponent,
+    MotorcyclepartlistComponent,
+    MotorcyclepartcreateComponent,
+  
   
 
     
@@ -52,7 +60,8 @@ import { MarcaComponent } from './components/marca/marca.component';
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgSelectModule
     
   ],
   providers: [],

@@ -1,0 +1,93 @@
+
+
+
+
+<button type="button" class="btn btn-primary float-end" (click)="mostrarFormulario()">Registrar Repuesto</button>
+
+<div class="formulario-container" *ngIf="mostrarComponente">
+  <app-motorcyclepartcreate (cerrar)="cerrarFormulario()"></app-motorcyclepartcreate>
+</div>
+
+
+<div class="col-4">
+    <div class="input-group ml-auto">
+        <input type="text" class="form-control" placeholder="Buscar Repuestos" [(ngModel)]="searchTerm" 
+        (input)="  getMotorcycleParts()" >
+        <div class="input-group-append">
+  
+  
+        </div>
+    </div>
+  </div>
+
+
+
+
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="page === 1">
+        <a class="page-link" [routerLink]="['.']" [queryParams]="{ page: page - 1 }" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li>
+      <li class="page-item" *ngFor="let p of totalPages" [class.active]="p === page">
+        <a class="page-link" [routerLink]="['.']" [queryParams]="{ page: p }">{{ p }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="page === totalPages[totalPages.length - 1]">
+        <a class="page-link" [routerLink]="['.']" [queryParams]="{ page: page + 1 }" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+    <div class="row">
+      <div class="row" *ngIf="motorcycleparts.length > 0"></div>
+     
+
+      <table class="table">
+        <thead>
+          <tr >
+            <th scope="col">Image</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Precio de venta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let motorcyclepart of motorcycleparts; trackBy: trackByFn">
+            
+            <th scope="row">  <img class="small-image" [src]="'http://127.0.0.1:8000/storage/images/' + motorcyclepart.image" alt="{{ motorcyclepart.name }}"
+                style="max-width: 200%; height: 300px;"></th>
+            <td>{{ motorcyclepart.name }}</td>
+            <th scope="row">{{ motorcyclepart.quantity }}</th>
+            <td>{{ motorcyclepart.sale_price}}</td>
+           
+              
+    
+                <td class="text-center">
+                  <button type="button" class="btn btn-success btn-sm d-block mb-2 w-100" >Editar</button>
+                  <button type="button" class="btn btn-danger btn-sm d-block w-100" >Eliminar</button>
+                </td>
+                
+          </tr>
+          
+        
+        </tbody>
+      </table>
+    
+
+
+
+      <div *ngIf="motorcycleparts.length === 0">No hay resultados para esta búsqueda</div>
+    </div>
+  </nav>
+
+
+  <script>
+    const botonRegistro = document.getElementById('boton-registro');
+    botonRegistro.addEventListener('click', () => {
+      const formularioRegistro = document.createElement('MotorcyclepartcreateComponent');
+      botonRegistro.appendChild(formularioRegistro);
+    });
+  </script>

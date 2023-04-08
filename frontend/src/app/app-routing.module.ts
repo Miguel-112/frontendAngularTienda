@@ -13,6 +13,7 @@ import { ListcategoriesComponent } from './components/categories/listcategories/
 import { ProviderComponent } from './components/provider/provider.component';
 import { ClientComponent } from './components/client/client.component';
 import { MarcaComponent } from './components/marca/marca.component';
+import { MotorcyclepartlistComponent } from './components/motorcyclepart/motorcyclepartlist/motorcyclepartlist.component';
 
 
 
@@ -63,6 +64,14 @@ const routes: Routes = [
     component: MarcaComponent,
     canActivate: [AuthGuard]
   },
+
+  {
+    path: 'motorcyclelist',
+    component: MotorcyclepartlistComponent,
+    canActivate: [AuthGuard]
+  },
+
+
 
 
 ];
