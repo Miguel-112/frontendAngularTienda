@@ -1,12 +1,17 @@
+
+
+
+
 <div class="formulario-container">
 
-    <button type="button" class="btn btn-secondary float-end" (click)="cerrarFormulario()">Cerrar</button>
+    <button type="button" class="btn btn-secondary float-end" (click)="cerrarFormularioedit()">Cerrar</button>
 
-    <h2>Formulario de registro Repuestos</h2>
+<h2>Formulario de editar Repuestos</h2>
 
-    <br>
 
-    <div class="success-message" *ngIf="successMessage">{{successMessage }}</div>
+
+
+     <div class="success-message" *ngIf="successMessage">{{successMessage }}</div> 
 
     <!-- <div *ngIf="errorMsg" class="error danger-message">{{errorMsg}}</div> -->
 
@@ -19,11 +24,11 @@
 
     
 
-            <div class="danger-message" *ngFor="let error of errorMsg | keyvalue">
+            <!-- <div class="danger-message" *ngFor="let error of errorMsg | keyvalue">
                 <p>{{ error.key }}: {{ error.value }}</p>
             </div>
 
-            <br>
+            <br> -->
 
 
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -37,13 +42,21 @@
                     </div>
                   
                     <div class="col-md-4 col-lg-4">
-                      <div class="form-group">
+                     <!--  <div class="form-group">
                         <label for="category">Categoría:</label>
                         <select formControlName="category_id" id="category_id" class="form-control">
                           <option value="">Selecciona una categoría</option>
                           <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
                         </select>
+                      </div> -->
+                      <div class="form-group" *ngIf="categories">
+                        <label for="category">Categoría:</label>
+                        <select formControlName="category_id" id="category_id" class="form-control" >
+                          <option value="">Selecciona una categoría</option>
+                          <option *ngFor="let category of categories" [value]="category.id" [selected]="category.id === motorcyclepart.category_id">{{category.name}}</option>
+                        </select>
                       </div>
+                      
                     </div>
                   
                     <div class="col-md-4 col-lg-4">
@@ -104,15 +117,18 @@
                 
                <div class="col-md-4 col-lg-4">
                 <div class="form-group">
+
                     <label for="image">Imagen:</label>
 
-                    <!-- <input type="file"  formControlName="image" accept="image/jpeg,image/png,image/jpg,image/gif" id="image" class="form-control" accept="image/*" required> -->
-                    <!-- <input type="file" formControlName="image" accept="image/jpeg,image/png,image/jpg,image/gif" id="image" class="form-control" accept="image/*" (change)="onFileSelected()" required>  -->
-
-                    <div id="image"  class="form-control" class="header_img"
+                    <div id="image" class="form-control" class="header_img"
                         (click)="onFileSelected()">
                         <img [src]="imageSrc" alt="seleccione una imagen para el repuesto">
                     </div>
+
+                    <!-- <div id="image"  class="form-control" class="header_img"
+                        (click)="onFileSelected()">
+                        <img [src]="'http://127.0.0.1:8000/storage/images/' + motorcyclepart.image" alt="{{ motorcyclepart.name }}" alt="seleccione una imagen para el repuesto">
+                   </div> -->
 
 
                     <div *ngIf="form.get('image')!.invalid && (form.get('image')!.dirty || form.get('image')!.touched)"
@@ -128,7 +144,7 @@
                         <div *ngIf="form.get('image')!.errors?.['pattern']">
                             La imagen debe tener una extensión válida: .png, .jpg, .jpeg, .gif
                         </div>
-                    </div>
+                    </div> 
                 </div>
                </div>
 
@@ -142,7 +158,8 @@
                 </div>
                </div>
                 <br>
-                <button type="submit" class="btn btn-primary">Guardar</button>
+
+                <button type="submit" class="btn btn-primary"  (click)="onEdit(motorcyclepart.id)" >Editar</button>
             </form>
 
       
@@ -150,3 +167,5 @@
 
 
 </div>
+
+

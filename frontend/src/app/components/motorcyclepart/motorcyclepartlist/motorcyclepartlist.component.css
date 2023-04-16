@@ -13,10 +13,29 @@
     top: 50%; /* centra verticalmente el contenedor */
     left: 50%; /* centra horizontalmente el contenedor */
     transform: translate(-50%, -50%); /* centra el contenedor en la pantalla */
-    width: 1000px; /* ajusta el ancho según sea necesario */
+    width: 700px; /* ajusta el ancho según sea necesario */
     background-color: white; /* ajusta el estilo según sea necesario */
     z-index: 999; /* asegúrate de que el contenedor esté por encima de otros elementos */
     padding: 20px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* ajusta el estilo según sea necesario */
+   
+  }
+
+
+
+  .success-message {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+   
+  }
+
+
+  .danger-message {
+    background-color:red;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
   }
   

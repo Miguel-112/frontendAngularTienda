@@ -17,11 +17,14 @@
 
   <div [formGroup]="myForm">
 
+
     <div class="row">
 
-      <div class="col-3">
+      <div class="col-md-12 col-lg-3">
 
-        <label for="category">Filtrar por categoría:</label>
+        <label for="category">
+          <mat-icon>category</mat-icon>
+          Filtrar por categoría:</label>
        
         <ng-select id="category" formControlName="category" [items]="categories" bindValue="id" bindLabel="name"
           placeholder="" [multiple]="false" [searchable]="true" [clearable]="true" (change)="onCategorySelected($event)"
@@ -30,9 +33,11 @@
 
       </div>
 
-      <div class="col-3">
+      <div class="col-md-12 col-lg-3">
 
-        <label for="category">Filtrar por Marca:</label>
+        <label for="category">
+          <mat-icon>category</mat-icon>
+          Filtrar por Marca:</label>
 
         <ng-select id="marca" formControlName="marca" [items]="marca" bindValue="id" bindLabel="name"
         placeholder="" [multiple]="false" [searchable]="true" [clearable]="true" (change)="onBrandSelected($event)"
@@ -80,7 +85,11 @@
             <h5 class="card-title">{{ motorcyclepart.name }}</h5>
             - <p class="card-text">cantidad: {{ motorcyclepart.quantity }}</p>
             <p class="card-text">Precio de venta: {{ motorcyclepart.sale_price | currency }}</p>
-            <p class="card-text">Marca: {{ motorcyclepart.brand_name }}</p>
+            <p class="card-text">Marca: <td>{{ motorcyclepart.brand.name}}</td> </p>
+
+
+           
+            <!-- <p class="card-text">Marca: {{ motorcyclepart.brand_name }}</p> -->
 
             <button type="button" style="margin-left: 4px; margin-right: 4px;" class="btn btn-success btn-sm ">Agregar
               al carro</button>

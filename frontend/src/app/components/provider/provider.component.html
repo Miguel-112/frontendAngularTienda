@@ -29,8 +29,9 @@
                         El nombre debe tener al menos {{ providerForm.get('name')?.errors?.['minlength']?.requiredLength }}
                         caracteres.
   
-  
                       </div>
+
+                      
                 </div>
             </div>
 
@@ -47,6 +48,13 @@
                     <div style="color: red;" *ngIf=" providerForm.get('email')?.errors?.['required']">
                         El email es requerido
                     </div>
+
+                    <div style="color: red;" *ngIf=" providerForm.get('email')?.errors?.['email']">
+
+                        inserte un correo valido
+  
+  
+                      </div>
 
                 </div>
             </div>

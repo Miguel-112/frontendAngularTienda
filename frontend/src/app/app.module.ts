@@ -25,6 +25,9 @@ import { MarcaComponent } from './components/marca/marca.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MotorcyclepartlistComponent } from './components/motorcyclepart/motorcyclepartlist/motorcyclepartlist.component';
 import { MotorcyclepartcreateComponent } from './components/motorcyclepart/motorcyclepartcreate/motorcyclepartcreate.component';
+import { MotorcycleparteditComponent } from './components/motorcyclepart/motorcyclepartedit/motorcyclepartedit.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -46,6 +49,7 @@ import { MotorcyclepartcreateComponent } from './components/motorcyclepart/motor
     MarcaComponent,
     MotorcyclepartlistComponent,
     MotorcyclepartcreateComponent,
+    MotorcycleparteditComponent,
   
   
 
@@ -61,7 +65,10 @@ import { MotorcyclepartcreateComponent } from './components/motorcyclepart/motor
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    NgSelectModule
+    NgSelectModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+   
     
   ],
   providers: [],
