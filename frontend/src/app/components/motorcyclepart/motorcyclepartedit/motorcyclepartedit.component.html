@@ -13,23 +13,6 @@
 
      <div class="success-message" *ngIf="successMessage">{{successMessage }}</div> 
 
-    <!-- <div *ngIf="errorMsg" class="error danger-message">{{errorMsg}}</div> -->
-
-    <!--     <div class="danger-message" *ngIf="errorMsg ">
-        <ul>
-          <li *ngFor="let error of errorMsg">{{ error }}</li>
-        </ul>
-      </div>
- -->
-
-    
-
-            <!-- <div class="danger-message" *ngFor="let error of errorMsg | keyvalue">
-                <p>{{ error.key }}: {{ error.value }}</p>
-            </div>
-
-            <br> -->
-
 
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
@@ -42,13 +25,7 @@
                     </div>
                   
                     <div class="col-md-4 col-lg-4">
-                     <!--  <div class="form-group">
-                        <label for="category">Categoría:</label>
-                        <select formControlName="category_id" id="category_id" class="form-control">
-                          <option value="">Selecciona una categoría</option>
-                          <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
-                        </select>
-                      </div> -->
+                     
                       <div class="form-group" *ngIf="categories">
                         <label for="category">Categoría:</label>
                         <select formControlName="category_id" id="category_id" class="form-control" >

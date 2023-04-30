@@ -70,12 +70,16 @@
         </ul>
         <form class="d-flex" role="search">
 
-            <button type="submit" class="btn btn-outline-success btncarro">
 
-                <img class="imgcarro"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7vAMWfCMVmZO2nqKgWkkIY-4gFIgovWsAWA&usqp=CAU"
-                    alt="Carrito de compras">
-            </button>
+            <a [routerLink]="'shoppingcart'">
+              <form class="d-flex" role="search">
+                <button type="submit" class="btn btn-outline-success btncarro">
+                  <span style="color:red" class="badge badge-light">{{ cartItemCount }}</span>
+                  <img class="imgcarro" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7vAMWfCMVmZO2nqKgWkkIY-4gFIgovWsAWA&usqp=CAU" alt="Carrito de compras">
+                 
+                </button>
+              </form>
+            </a>
 
         </form>
       </div>

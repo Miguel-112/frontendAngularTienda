@@ -14,10 +14,14 @@ export class MotorcyclepartlistComponent {
 
   page = 1;
   perPage = 5;
+  pageRange = 9;
   // motorcycleparts: MotorcyclePart[] = [];
   motorcycleparts: MotorcyclePartWithRelations[]=[];
 
   totalPages: number[] = [];
+  totalpage!:number;
+  
+
   searchTerm = ''
   successMessage = ''
   errorMsg: any = {};
@@ -78,12 +82,14 @@ export class MotorcyclepartlistComponent {
         this.totalPages = [];
         for (let i = 1; i <= response.last_page; i++) {
           this.totalPages.push(i);
+          this.totalpage=i;
+          
         }
       });
     }
 
     actualizarLista(event: boolean) {
-      
+
      this.getMotorcycleParts();
     }
 
@@ -139,6 +145,31 @@ export class MotorcyclepartlistComponent {
   
         }
       );
+    }
+
+
+    getPageRange(page: number, totalPages: number): number[] {
+      const pageRange = this.pageRange;
+      const pagesToShow = [];
+    
+      // Calcular el rango de páginas que se mostrarán en la lista de paginación
+      let start = Math.max(page - Math.floor(pageRange / 2), 1);
+      let end = Math.min(start + pageRange - 1, totalPages);
+    
+      // Ajustar el rango de páginas si se desborda
+      const offset = pageRange - (end - start + 1);
+      if (offset > 0) {
+        start = Math.max(start - offset, 1);
+        end = Math.min(start + pageRange - 1, totalPages);
+      }
+    
+      // Agregar las páginas al arreglo a mostrar
+      for (let i = start; i <= end; i++) {
+        pagesToShow.push(i);
+        
+      }
+    
+      return pagesToShow;
     }
 
 

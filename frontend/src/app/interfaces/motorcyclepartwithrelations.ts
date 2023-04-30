@@ -7,7 +7,9 @@ import { MotorcyclePart } from "../class/motorcyclepart";
 
 
 export interface MotorcyclePartWithRelations extends MotorcyclePart {
+    addedToCart?: boolean;
     brand: Marca;
     category: Category;
     provider: Provider;
+    
   }

@@ -26,6 +26,7 @@ export class MotorcycleparteditComponent {
 
   page = 1;
   perPage = 5;
+  totalpage!:number;
   // motorcycleparts: MotorcyclePart[] = [];
   motorcycleparts: MotorcyclePartWithRelations[]=[];
 
@@ -41,6 +42,7 @@ export class MotorcycleparteditComponent {
   categories: Category[] = [];
   selectedCategory: number | undefined;
   successMessage = ''
+
 
   @Output() onUpdated: EventEmitter<boolean> = new EventEmitter<boolean>();
   // errorMsg = ''
@@ -133,6 +135,7 @@ export class MotorcycleparteditComponent {
         this.totalPages = [];
         for (let i = 1; i <= response.last_page; i++) {
           this.totalPages.push(i);
+          this.totalpage=i;
         }
       });
     }

@@ -6,6 +6,7 @@ import { HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { MotorcyclePartWithRelations } from 'src/app/interfaces/motorcyclepartwithrelations';
+import { CartMotorcyclePart } from 'src/app/interfaces/cartMotorcyclepart';
 
 
 
@@ -17,7 +18,7 @@ export interface MotorcyclePartResponse {
 
 @Injectable({
   providedIn: 'root'
-})
+})  
 export class MotorcyclePartService {
 
   constructor(private apiService: GenericoService) { }
@@ -25,10 +26,10 @@ export class MotorcyclePartService {
   private apiUrl = '/';
 
 
-  getMotorcycleParts(page: number, perPage: number, category: number, brand: number, searchTerm: string): Observable<{ data: MotorcyclePartWithRelations[], current_page: number, last_page: number }> {
+  getMotorcycleParts(page: number, perPage: number, category: number, brand: number, searchTerm: string): Observable<{ data: CartMotorcyclePart[], current_page: number, last_page: number }> {
     const url = `${this.apiUrl}motorcyclepart?page=${page}&perPage=${perPage}&category=${category}&brand=${brand}&searchTerm=${searchTerm}`;
         
-    return this.apiService.get<{ data: MotorcyclePartWithRelations[], current_page: number, last_page: number }>(url);
+    return this.apiService.get<{ data: CartMotorcyclePart[], current_page: number, last_page: number }>(url);
   }
   
 

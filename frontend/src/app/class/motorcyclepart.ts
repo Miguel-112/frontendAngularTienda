@@ -21,6 +21,7 @@ export class MotorcyclePart {
     brand!: Marca; // <-- relación con Brand
     category!: Category; // <-- relación con Category
     provider!: Provider; // <-- relación con Provider
+    addedToCart?: boolean;
   
     constructor(
       id: number,
@@ -35,6 +36,7 @@ export class MotorcyclePart {
       quantity: number,
       image: string,
       iva: number
+      
     ) {
       this.id = id;
       this.name = name;

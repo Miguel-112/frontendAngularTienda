@@ -9,6 +9,9 @@ import { Category } from 'src/app/interfaces/category';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Marca } from 'src/app/interfaces/marca';
 import { MarcaService } from 'src/app/services/marca/marca.service';
+import { ShoppingcartService } from 'src/app/services/shoppingcart/shoppingcart.service';
+import { MotorcyclePartWithRelations } from 'src/app/interfaces/motorcyclepartwithrelations';
+import { CartMotorcyclePart } from 'src/app/interfaces/cartMotorcyclepart';
 
 
 
@@ -23,7 +26,9 @@ export class PrincipalComponent {
 
 page = 1;
 perPage = 3;
-motorcycleparts: MotorcyclePart[] = [];
+pageRange = 9;
+totalpage!:number;
+motorcycleparts: CartMotorcyclePart[] = [];
 categories: Category[] = [];
 filteredCategories: Category[]=[];
 marca: Marca[] = [];
@@ -34,18 +39,49 @@ pages: number[] = [];
 totalPages: number[] = [];
 category: number = 0;
 brand: number = 0;
-
 searchTerm=''
+addedToCart = false;
+
+addedToCartMap: any = {};
 
 
 
-  constructor(private motorcyclepart: MotorcyclePartService,    private route: ActivatedRoute,private categoriService: CategoriesService,private formBuilder: FormBuilder,private marcaService: MarcaService){
+
+
+  constructor(private motorcyclepart: MotorcyclePartService, 
+       private route: ActivatedRoute,private categoriService:
+        CategoriesService,private formBuilder:
+         FormBuilder,private marcaService: MarcaService,private shoppingCartService:ShoppingcartService
+
+         
+         ){
     this.myForm = this.formBuilder.group({
       category: [''], // valor inicial
       marca: [''] 
     });
 
   }
+
+
+ /*  public addToCart(motorcyclepart: MotorcyclePartWithRelations): void {
+    this.shoppingCartService.addmotorcyclepart(motorcyclepart);
+    this.addedToCart = true;
+
+    
+    
+  } */
+
+  public addToCart(motorcyclepart: CartMotorcyclePart): void {
+    this.shoppingCartService.addmotorcyclepart(motorcyclepart);
+    motorcyclepart.addedToCart = true;
+  }
+
+
+
+ 
+  
+
+ 
 
 
 
@@ -57,6 +93,7 @@ ngOnInit(): void {
     this.getMotorcycleParts();
     this.getCategories();
     this.getMarca();
+    this.shoppingCartService.getmotorcyclepart();
    
   });
 
@@ -101,6 +138,7 @@ getMotorcycleParts(): void {
     this.totalPages = [];
     for (let i = 1; i <= response.last_page; i++) {
       this.totalPages.push(i);
+      this.totalpage=i;
     }
   });
 }
@@ -167,7 +205,29 @@ filterMarca(): void {
 
 
 
+getPageRange(page: number, totalPages: number): number[] {
+  const pageRange = this.pageRange;
+  const pagesToShow = [];
 
+  // Calcular el rango de páginas que se mostrarán en la lista de paginación
+  let start = Math.max(page - Math.floor(pageRange / 2), 1);
+  let end = Math.min(start + pageRange - 1, totalPages);
+
+  // Ajustar el rango de páginas si se desborda
+  const offset = pageRange - (end - start + 1);
+  if (offset > 0) {
+    start = Math.max(start - offset, 1);
+    end = Math.min(start + pageRange - 1, totalPages);
+  }
+
+  // Agregar las páginas al arreglo a mostrar
+  for (let i = start; i <= end; i++) {
+    pagesToShow.push(i);
+    
+  }
+
+  return pagesToShow;
+}
 
  
 

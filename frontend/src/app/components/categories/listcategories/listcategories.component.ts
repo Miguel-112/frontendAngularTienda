@@ -50,6 +50,7 @@ export class ListcategoriesComponent {
     }
 
     const formData = this.categoryForm.value;
+    console.log(formData);
 
     if (this.isEdit) {
        this. categoriService.updateCategory(this.editCategoryId, formData).subscribe(
@@ -69,6 +70,7 @@ export class ListcategoriesComponent {
           this.resetForm();
           this.getCategories();
           this.successMessage = 'categoria creada con exito';
+
 
         }, (error) => {
           console.log('Error al registrar la categoria', error);

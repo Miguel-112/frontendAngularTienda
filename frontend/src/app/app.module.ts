@@ -28,6 +28,8 @@ import { MotorcyclepartcreateComponent } from './components/motorcyclepart/motor
 import { MotorcycleparteditComponent } from './components/motorcyclepart/motorcyclepartedit/motorcyclepartedit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
+import { ShoppingcartComponent } from './components/shoppingcart/shoppingcart.component';
+
 
 
 
@@ -50,6 +52,8 @@ import { MatIconModule } from '@angular/material/icon';
     MotorcyclepartlistComponent,
     MotorcyclepartcreateComponent,
     MotorcycleparteditComponent,
+    ShoppingcartComponent,
+   
   
   
 
