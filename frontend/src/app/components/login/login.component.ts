@@ -32,6 +32,11 @@ export class LoginComponent {
   }
 
 
+  hideShowPass(){
+    
+  }
+
+
 
 
   onSubmit(): void {

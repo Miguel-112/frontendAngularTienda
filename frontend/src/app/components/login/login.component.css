@@ -1,100 +1,137 @@
 .login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-    
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
   
-  .logo-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .logo {
-    width: 200px;
-    height: 60px;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    font-weight: bold;
-  }
-  
-  input[type="email"],
-  input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 20px;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    outline: none;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    background-color: green;
-    color: #111;
-   
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 200px;
+  height: 60px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: green;
+  color: #111;
+ 
 }  
 
 
 
 .animated-text {
-    animation: text-glow 1s ease-in-out infinite;
-    color: green;
+  animation: text-glow 1s ease-in-out infinite;
+  color: green;
+}
+
+@keyframes text-glow {
+  0% {
+    text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffd700, 0 0 40px #ffd700, 0 0 70px #ffd700, 0 0 80px #ffd700, 0 0 100px #ffd700;
   }
-
-  @keyframes text-glow {
-    0% {
-      text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffd700, 0 0 40px #ffd700, 0 0 70px #ffd700, 0 0 80px #ffd700, 0 0 100px #ffd700;
-    }
-    100% {
-      text-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700, 0 0 40px #ffd700, 0 0 50px #ffd700, 0 0 80px #ffd700, 0 0 90px #ffd700, 0 0 120px #ffd700;
-    }
+  100% {
+    text-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700, 0 0 40px #ffd700, 0 0 50px #ffd700, 0 0 80px #ffd700, 0 0 90px #ffd700, 0 0 120px #ffd700;
   }
+}
 
 
 
-  .animacion-moto {
-    animation-name: rodar-moto;
-    animation-duration: 2s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+.animacion-moto {
+  animation-name: rodar-moto;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rodar-moto {
+  0% {
+    transform: translateX(0%);
   }
-  
-  @keyframes rodar-moto {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
+  100% {
+    transform: translateX(-100%);
   }
-  
-
-  
-  .success-message {
-    background-color: green;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-   
-  }
+}
 
 
-  .danger-message {
-    background-color:red;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-  }
 
+.success-message {
+  background-color: green;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+ 
+}
+
+
+.danger-message {
+  background-color:red;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+
+
+
+
+
+
+.login-card-body,
+.login-box {
+  background-image: url('../../../assets/dist/img/fondo-plomo.jpg');
+  background-position: center center;
+  background-size: cover;
+  color: white;
+  height: 500px;
+
+    width: 400px;
+}
+
+.login-box,
+a {
+  color: white;
+}
+
+.social-auth-links,
+a {
+  color: black;
+}
+
+.link-pass {
+  color: white;
+}
+
+.link-reg {
+  color: white;
+}
+.cursor{
+cursor: pointer;
+}

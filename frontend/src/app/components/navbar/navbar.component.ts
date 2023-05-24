@@ -28,6 +28,10 @@ export class NavbarComponent {
       this.cartItems.push(product);
       this.cartItemCount = this.cartItems.length;
     });
+    this.shoppingCartService.cartItemCount$.subscribe(count => {
+      this.cartItemCount = count;
+    });
+    
   }
 
 

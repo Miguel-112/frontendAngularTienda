@@ -25,7 +25,7 @@ export class PrincipalComponent {
 
 
 page = 1;
-perPage = 3;
+perPage = 6;
 pageRange = 9;
 totalpage!:number;
 motorcycleparts: CartMotorcyclePart[] = [];
@@ -77,14 +77,6 @@ addedToCartMap: any = {};
   }
 
 
-
- 
-  
-
- 
-
-
-
   myForm: FormGroup;
   
 ngOnInit(): void {
@@ -102,7 +94,6 @@ ngOnInit(): void {
 
 onCategorySelected(event: Category): void {
  
-
   if (event) {
     this.category = event.id;
     this.getMotorcycleParts();

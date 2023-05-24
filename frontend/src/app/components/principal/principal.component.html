@@ -1,3 +1,6 @@
+
+
+<br> <br>
 <div className="snippet-body">
   <div className="snippet-body"></div>
 
@@ -91,53 +94,53 @@
 
   <div class="row">
     <div class="row" *ngIf="motorcycleparts.length > 0"></div>
-    <div
-      class="col-12 col-sm-6 col-md-4 col-lg-4"
-      *ngFor="let motorcyclepart of motorcycleparts; trackBy: trackByFn"
-    >
-      <div class="card">
-        <img
-          [src]="'http://127.0.0.1:8000/storage/images/' + motorcyclepart.image"
-          alt="{{ motorcyclepart.name }}"
-          style="max-width: 200%; height: 300px"
-        />
+   
+  <div class="row">
+    <div class="col-lg-6 col-md-12 col-sm-12"
+    *ngFor="let motorcyclepart of motorcycleparts; trackBy: trackByFn">
+      <div class="card border border-white mt-4">
+        <div style="background-color: black" class="card-body">
+          <div class="float-left mr-3 d-flex flex-column flex-sm-row">
+            <img
+            [src]="'http://127.0.0.1:8000/storage/images/' + motorcyclepart.image"
+              alt="{{ motorcyclepart.name }}"
+              class="mr-3 mb-3 mb-sm-0 img-fluid"
+            />
+            <div class="d-flex flex-column">
+              <h5 class="card-title letra margin">{{ motorcyclepart.name }}</h5>
+              <p class="card-text  letra margin" letra>cantidad: {{ motorcyclepart.quantity }}</p>
+              <p class="card-text letra margin" >marca: {{ motorcyclepart.brand.name }}</p>
+              <p class="letra2"></p>
+              
+              <p class="mostaza"> Precio de venta: {{ motorcyclepart.sale_price | currency }}</p>
+            </div>
+          </div>
+        </div>
 
-        <div class="card-body">
-          <h5 class="card-title">{{ motorcyclepart.name }}</h5>
-          -
-          <p class="card-text">cantidad: {{ motorcyclepart.quantity }}</p>
-          <p class="card-text">
-            Precio de venta: {{ motorcyclepart.sale_price | currency }}
-          </p>
-          <p class="card-text">
-            Marca:
-            <td>{{ motorcyclepart.brand.name }}</td>
-          </p>
+        
 
-          <!-- <p class="card-text">Marca: {{ motorcyclepart.brand_name }}</p> -->
-
-          <button type="button" class="btn btn-sm"
+        <button type="button" class="btn btn-sm letracarro mostazab"
           [class.btn-success]="!motorcyclepart.addedToCart"
           [class.btn-secondary]="motorcyclepart.addedToCart"
           [disabled]="motorcyclepart.addedToCart"
           (click)="addToCart(motorcyclepart)">
           <ng-container *ngIf="!motorcyclepart.addedToCart; else addedToCartLabel">
-            Agregar al carro
+            Agregar al carro  <mat-icon class="big-icon">shopping_cart</mat-icon>
           </ng-container>
           <ng-template #addedToCartLabel>
-            Agregado al carro
+            Agregado al carro  <mat-icon class="big-icon">shopping_cart</mat-icon>
           </ng-template>
         </button>
-        
-          <button type="button" class="btn btn-primary btn-sm m-r-5">
-            Detalle
-          </button>
-        </div>
       </div>
-      <br />
-    </div>
+    </div> </div>
     <div *ngIf="motorcycleparts.length === 0">
       No hay resultados para esta búsqueda
     </div>
   </div>
+
+
+ 
+
+
+  
 </nav>

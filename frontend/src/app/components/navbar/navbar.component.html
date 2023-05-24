@@ -1,105 +1,94 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-     
-      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button> -->
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" aria-expanded="false">
-        <span class="navbar-toggler-icon"></span>
-      </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
-        <div class="logo-container">
-            <h6 class="animated-text">Almacén de repuestos</h6>
-            <img src="https://img.freepik.com/vector-gratis/motocicleta-aislado-sobre-fondo-blanco-estilo-monocromatico_1284-38724.jpg" alt="Logo Metin2" style="width: 50px; height: 50px;">
-           
+   <nav
+   class="navbar sticky-top bg-dark navbar-expand-lg bg-body-tertiary"
+   data-bs-theme="dark"
+ >
+   <div class="container-fluid">
+     <a class="navbar-brand" href="#"><i class="fas fa-utensils"></i> Menú</a>
+     <button
+       class="navbar-toggler"
+       type="button"
+       data-bs-toggle="collapse"
+       data-bs-target="#navbarSupportedContent"
+       aria-controls="navbarSupportedContent"
+       aria-expanded="false"
+       aria-label="Toggle navigation"
+     >
+       <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-            <a class="navbar-brand" class="animado" routerLink="home" routerLinkActive="active">
-              <mat-icon>home</mat-icon>
-              Home</a>
-
-        </div>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item specemenu">
+          <label for=""><a class="animado" routerLink="home" routerLinkActive="active">
+            <mat-icon>home</mat-icon>
+            Home</a></label>
+      </li>
+      
           
-            <li class="nav-item">
-                <label for=""><a class="animado" routerLink="categories" routerLinkActive="active">
-                  <mat-icon>category</mat-icon>
-                  Categorias</a></label>
-            </li>
-            
-            <li class="nav-item">
-                <label for=""><a class="animado" routerLink="provider"
-                        routerLinkActive="active">
+        <li class="nav-item specemenu">
+            <label for=""><a class="animado" routerLink="categories" routerLinkActive="active">
+              <mat-icon>category</mat-icon>
+              Categorias</a></label>
+        </li>
+        
+        <li class="nav-item specemenu">
+            <label for=""><a class="animado" routerLink="provider"
+                    routerLinkActive="active">
 
-                        <mat-icon> contact_mail</mat-icon>
-                        Proveedor</a></label>
-            
-            </li>
-           <!--  <li class="nav-item">
-                <label for=""><a class="animado" routerLink="" routerLinkActive="active">Iniciar
-                        sesion</a></label>
-            </li> -->
-            <li class="nav-item">
-                <label for=""><a class="animado" routerLink="client" routerLinkActive="active">
-                  
-                  
-                  <mat-icon>person_pin</mat-icon>
-                  Cliente</a></label>
-            </li>
-            
-            <li class="nav-item">
-                <label for=""><a class="animado" routerLink="brand" routerLinkActive="active">
-                  <mat-icon>workspaces_filled</mat-icon>
-                  Marca</a></label>
-            </li>
+                    <mat-icon> contact_mail</mat-icon>
+                    Proveedor</a></label>
+        
+        </li>
+      
+        <li class="nav-item specemenu">
+            <label for=""><a class="animado" routerLink="client" routerLinkActive="active">
+              
+              
+              <mat-icon>person_pin</mat-icon>
+              Cliente</a></label>
+        </li>
+        
+        <li class="nav-item specemenu">
+            <label for=""><a class="animado" routerLink="brand" routerLinkActive="active">
+              <mat-icon>workspaces_filled</mat-icon>
+              Marca</a></label>
+        </li>
 
 
-            <li class="nav-item">
-              <label for=""><a class="animado" routerLink="motorcyclelist" routerLinkActive="active">
-                <mat-icon>two_wheeler</mat-icon>
-                Repuestos</a></label>
-          </li>
+        <li class="nav-item specemenu">
+          <label for=""><a class="animado" routerLink="motorcyclelist" routerLinkActive="active">
+            <mat-icon>two_wheeler</mat-icon>
+            Repuestos</a></label>
+      </li>
 
 
-            
-            
+        
+        
 
 
-        </ul>
+    </ul>
+ 
+
+       <a [routerLink]="'shoppingcart'">
         <form class="d-flex" role="search">
+          
 
 
-            <a [routerLink]="'shoppingcart'">
-              <form class="d-flex" role="search">
-                <button type="submit" class="btn btn-outline-success btncarro">
-                  <span style="color:red" class="badge badge-light">{{ cartItemCount }}</span>
-                  <img class="imgcarro" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7vAMWfCMVmZO2nqKgWkkIY-4gFIgovWsAWA&usqp=CAU" alt="Carrito de compras">
-                 
-                </button>
-              </form>
-            </a>
+          <div style="margin-right: 1rem; margin-top: 1rem;" class="shopping-cart-container">
+            <mat-icon class="big-icon">shopping_cart</mat-icon>
+            <span class="item-count">{{ cartItemCount }}</span>
+          </div>
+          
 
+         
         </form>
-      </div>
-    </div>
-  </nav>
-
-<script>
-  $('.navbar-toggler').click(function () {
-    $(this).attr('aria-expanded', function (i, attr) {
-      return attr == 'true' ? 'false' : 'true';
-    });
-  });
-</script>
-
-
-<script>
-    $('.navbar-toggler').click(function () {
-      $(this).attr('aria-expanded', function (i, attr) {
-        return attr == 'true' ? 'false' : 'true';
-      });
-    });
-  </script>
+      </a>
+     </div>
+   </div>
+   <!-- Navbar content -->
+ </nav>
+ 
+  
   
