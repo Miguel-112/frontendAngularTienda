@@ -29,6 +29,7 @@ import { MotorcycleparteditComponent } from './components/motorcyclepart/motorcy
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { ShoppingcartComponent } from './components/shoppingcart/shoppingcart.component';
+import { InvoceComponent } from './components/invoce/invoce.component';
 
 
 
@@ -53,6 +54,7 @@ import { ShoppingcartComponent } from './components/shoppingcart/shoppingcart.co
     MotorcyclepartcreateComponent,
     MotorcycleparteditComponent,
     ShoppingcartComponent,
+    InvoceComponent,
    
   
   

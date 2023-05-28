@@ -1,0 +1,311 @@
+<!-- <div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>
+<div *ngIf="errorMsg" class="error danger-message">{{errorMsg}}</div>
+<br> -->
+<section class="content">
+    <div class="container-fluid">
+        <br />
+
+        <div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>
+       <div *ngIf="errormsg" class="error danger-message">{{errormsg}}</div>
+        <br>
+
+
+        <h1>Listado de Facturas</h1>
+       
+        <form [formGroup]="invoiceM" (ngSubmit)="onDateRangeChanged()">
+            <form [formGroup]="invoiceM">
+                <div class="row">
+                    <div class="col-md-6 col-lg-6">
+                        <label for="startDate">Fecha de inicio:</label>
+                        <input
+                            type="date"
+                            id="startDate"
+                            formControlName="startDate"
+                        />
+                        <br />
+                    </div>
+
+                    <div class="row mb-2" class="col-md-6 col-lg-6">
+                        <label for="endDate">Fecha de finalización:</label>
+                        <input
+                            type="date"
+                            id="endDate"
+                            formControlName="endDate"
+                        />
+                    </div>
+                </div>
+            </form>
+        </form>
+      
+        <br><br>
+        <div class="row">
+            <div class="col-md-6 col-lg-3">
+              <div class="input-group ml-auto">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Buscar Repuestos"
+                  [(ngModel)]="searchTerm"
+                  (input)=" onDateRangeChanged()"
+                />
+                <div class="input-group-append"></div>
+              </div>
+            </div>
+          
+            <div class="col-md-6 col-lg-3">
+              <div class="success-message" *ngIf="successMessage">
+                {{ successMessage }}
+              </div>
+            </div>
+          </div>
+        
+        
+          <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+              <li class="page-item" [class.disabled]="page === 1">
+                <a
+                  class="page-link"
+                  [routerLink]="['.']"
+                  [queryParams]="{ page: page - 1 }"
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li
+                class="page-item"
+                *ngFor="let p of getPageRange(page, totalpage)"
+                [class.active]="p === page"
+              >
+                <a class="page-link" [routerLink]="['.']" [queryParams]="{ page: p }">{{
+                  p
+                }}</a>
+              </li>
+              <li class="page-item" [class.disabled]="page === totalpage">
+                <a
+                  class="page-link"
+                  [routerLink]="['.']"
+                  [queryParams]="{ page: page + 1 }"
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+            <div class="row">
+              <div class="row" *ngIf="invoice.length > 0"></div>
+          
+              <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">NrFactura</th>
+                        <th scope="col">Fechas</th>
+                        <th scope="col">Nombre del Cliente</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let invoice of invoice; trackBy: trackByFn">
+
+                        <td>{{ invoice.id }}</td>
+                        <th scope="row">{{ invoice.created_at }}</th>
+                        <td>{{ invoice.client_name}}</td>
+                        <td>{{ invoice.total_sale }}</td>
+    
+                        <td class="text-center">
+                            <button
+                                type="button"
+                                class="btn btn-primary btn-sm d-block mb-2 w-100"
+                                (click)="navigateToRoute()"
+                            >
+                                Detalle
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-success btn-sm d-block mb-2 w-100"
+                            >
+                                Editar
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-danger btn-sm d-block w-100"
+                            >
+                                Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                    
+    
+                   
+                </tbody>
+            </table>
+          
+              <div *ngIf="invoice.length === 0">
+                No hay resultados para esta búsqueda
+              </div>
+            </div>
+          </nav>
+
+    </div></section>
+
+
+
+<!-- <section class="content">
+    <div class="container-fluid">
+        <br />
+
+        <h1>Listado de Facturas</h1>
+
+        <form [formGroup]="invoiceM" (ngSubmit)="onDateRangeChanged()">
+            <form [formGroup]="invoiceM">
+                <div class="row">
+                    <div class="col-md-6 col-lg-6">
+                        <label for="startDate">Fecha de inicio:</label>
+                        <input
+                            type="date"
+                            id="startDate"
+                            formControlName="startDate"
+                        />
+                        <br />
+                    </div>
+
+                    <div class="row mb-2" class="col-md-6 col-lg-6">
+                        <label for="endDate">Fecha de finalización:</label>
+                        <input
+                            type="date"
+                            id="endDate"
+                            formControlName="endDate"
+                        />
+                    </div>
+                </div>
+            </form>
+        </form>
+
+        <br /><br />
+
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <div class="input-group ml-auto">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Digite factura a buscar"
+                    />
+                    <div class="input-group-append"></div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-6 d-flex justify-content-end">
+                <button type="button" class="btn btn-primary float-end">
+                    Registrar Factura
+                </button>
+            </div>
+        </div>
+
+        <br />
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">NrFactura</th>
+                    <th scope="col">Fechas</th>
+                    <th scope="col">Nombre del Cliente</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0009</td>
+                    <th scope="row">20/04/2023</th>
+                    <td>Camilo</td>
+                    <td>$50000</td>
+
+                    <td class="text-center">
+                        <button
+                            type="button"
+                            class="btn btn-primary btn-sm d-block mb-2 w-100"
+                            (click)="navigateToRoute()"
+                        >
+                            Detalle
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-success btn-sm d-block mb-2 w-100"
+                        >
+                            Editar
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-danger btn-sm d-block w-100"
+                        >
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>0011</td>
+                    <th scope="row">20/04/2023</th>
+                    <td>Maria</td>
+                    <td>$2000000</td>
+
+                    <td class="text-center">
+                        <button
+                            type="button"
+                            class="btn btn-primary btn-sm d-block mb-2 w-100"
+                            (click)="navigateToRoute()"
+                        >
+                            Detalle
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-success btn-sm d-block mb-2 w-100"
+                        >
+                            Editar
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-danger btn-sm d-block w-100"
+                        >
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>0010</td>
+                    <th scope="row">20/04/2023</th>
+                    <td>Andrea</td>
+                    <td>$90000</td>
+
+                    <td class="text-center">
+                        <button
+                            type="button"
+                            class="btn btn-primary btn-sm d-block mb-2 w-100"
+                            (click)="navigateToRoute()"
+                        >
+                            Detalle
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-success btn-sm d-block mb-2 w-100"
+                        >
+                            Editar
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-danger btn-sm d-block w-100"
+                        >
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section> -->
+
+

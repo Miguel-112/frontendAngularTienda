@@ -15,6 +15,7 @@ import { ClientComponent } from './components/client/client.component';
 import { MarcaComponent } from './components/marca/marca.component';
 import { MotorcyclepartlistComponent } from './components/motorcyclepart/motorcyclepartlist/motorcyclepartlist.component';
 import { ShoppingcartComponent } from './components/shoppingcart/shoppingcart.component';
+import { InvoceComponent } from './components/invoce/invoce.component';
 
 
 
@@ -75,6 +76,12 @@ const routes: Routes = [
   {
     path: 'shoppingcart',
     component: ShoppingcartComponent,
+    canActivate: [AuthGuard]
+  },
+
+  {
+    path: 'invoce',
+    component: InvoceComponent,
     canActivate: [AuthGuard]
   },
 

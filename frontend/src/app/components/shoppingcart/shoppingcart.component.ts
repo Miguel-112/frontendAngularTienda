@@ -28,7 +28,20 @@ export class ShoppingcartComponent {
   client: Client[] = [];
   filteredClient: Client[]=[];
   clientForm!: FormGroup;
+  successMessage = '';
+  // errorMsg = ''
+
+  errorMsg: any = {};
+
   ngOnInit(): void {
+
+    this.loadShoppingCartProducts();
+
+    const successMessage = localStorage.getItem('successMessage');
+    if (successMessage) {
+      this.successMessage = successMessage;
+      localStorage.removeItem('successMessage');
+    }
    
     this.createForm();
     this.route.queryParams.subscribe(params => {
@@ -53,17 +66,65 @@ export class ShoppingcartComponent {
   }
 
 
-  onSubmit() {}
+  onSubmit() {
 
 
- /*  public TotaSales() {
-    this.total_sale = 0; // Reinicia el valor total_sale
-    this.motorcyclepart.forEach((element) => {
-      this.sale = element.saleprice_total;
-      this.total_sale += this.sale;
+   if(this.clientForm.valid){
+    this.motorcyclepart.forEach(element => {
+      console.log(element);
     });
-    this.cd.detectChanges(); // Detecta los cambios y actualiza la vista
-  } */
+   
+   
+   
+
+    const client_id_control = this.clientForm.get('client_id');
+    if (client_id_control) {
+      const client_id = client_id_control.value;
+     
+      this.shoppingCartService.createinvoices(this.total_sale,client_id,this.motorcyclepart).subscribe(
+        (response) => {
+         
+          console.log('Venta exitosa', response);
+  
+          localStorage.setItem('successMessage', 'Venta exitosa');
+          localStorage.removeItem('shopping-cart');
+          window.location.reload();
+          this.successMessage = 'Venta exitosa';
+        },
+        (error) => {
+          console.log('Erroral realizar la venta', error);
+          // this.errorMsg = error.errors;
+          this.errorMsg = error.error.errors;
+        }
+      );
+     
+    } else {
+      console.log('Error: client_id_control no encontrado en el formulario');
+    }
+   }
+
+    
+   
+
+  }
+
+
+  loadShoppingCartProducts(): void {
+  
+
+    const shoppingCartString = localStorage.getItem('shopping-cart');
+if (shoppingCartString) {
+  const shoppingCart = JSON.parse(shoppingCartString);
+  this.motorcyclepart = shoppingCart ? shoppingCart : [];
+  // Resto del código
+} else {
+  // El valor en el Local Storage es null, realiza la lógica necesaria
+}
+
+  }
+
+
+
   public removeProduct(index: number): void {
     this.shoppingCartService.removemotorcyclepart(index);
     this.motorcyclepart = this.shoppingCartService.getmotorcyclepart();
