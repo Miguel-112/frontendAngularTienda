@@ -16,6 +16,7 @@ import { MarcaComponent } from './components/marca/marca.component';
 import { MotorcyclepartlistComponent } from './components/motorcyclepart/motorcyclepartlist/motorcyclepartlist.component';
 import { ShoppingcartComponent } from './components/shoppingcart/shoppingcart.component';
 import { InvoceComponent } from './components/invoce/invoce.component';
+import { InvoicedetailComponent } from './components/invoicedetail/invoicedetail/invoicedetail.component';
 
 
 
@@ -84,6 +85,12 @@ const routes: Routes = [
     component: InvoceComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'invocedetail',
+    component: InvoicedetailComponent,
+    canActivate: [AuthGuard]
+  },
+
 
 
 

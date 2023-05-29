@@ -27,6 +27,7 @@
     "jquery": "^3.6.4",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "typeface-roboto": "^1.1.13",
     "zone.js": "~0.12.0"
   },
   "devDependencies": {

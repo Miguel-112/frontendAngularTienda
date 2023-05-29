@@ -1,0 +1,129 @@
+<section class="content">
+  <div class="container-fluid">
+    <br />
+
+    <h1>Detalle de Facturas</h1>
+
+    <form [formGroup]="invoiceD" (ngSubmit)="onDateRangeChanged()">
+      <form [formGroup]="invoiceD">
+        <div class="row">
+          <div class="col-md-6 col-lg-6"></div>
+
+          <div class="row mb-2" class="col-md-6 col-lg-6"></div>
+        </div>
+      </form>
+    </form>
+
+    <div class="row">
+      <div class="col-md-6 col-lg-6">
+        <div class="input-group ml-auto">
+          <div class="input-group-append"></div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <ul class="list-group">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <strong>Número de la factura</strong>
+
+                  <span>{{ invoice.id }}</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-sm-4">
+              <ul class="list-group">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <strong>Fecha de expedicion</strong>
+                  <span>
+                    {{ invoice.created_at }}
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-sm-4">
+              <ul class="list-group">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <strong>Nombre del Cliente </strong>
+
+                  <span>
+                    {{ invoice.client_name }}
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-sm-4">
+              <ul class="list-group">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <strong> Total Factura</strong>
+
+                  <span> {{ invoice.total_sale | currency }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <br>
+
+    <h4>Lista Productos</h4>
+
+    <div class="table-responsive table-responsive-sm">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">iva</th>
+            <th scope="col">precio venta</th>
+            <th scope="col">Precio venta total</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let invoicedetail of invoicedetail;">
+
+            <td>{{ invoicedetail.name }}</td>
+            <td>{{ invoicedetail.cantidad }}</td>
+            <td>{{ invoicedetail.iva }}</td>
+            <td>{{  invoicedetail.sale_price | currency }}</td>
+            <td>{{  invoicedetail.saleprice_total | currency }}</td>
+
+            <td class="text-center">
+              <button type="button" class="btn btn-danger btn-sm d-block w-100">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+
+         
+          
+
+       
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
